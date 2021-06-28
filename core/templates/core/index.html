@@ -1,0 +1,194 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+{% endblock style %}
+
+{% block navbar %}
+{% include 'core/navbar.html' with brand_name=brand_name %}
+{% endblock navbar %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-12 my-auto p-3">
+      <h2>MeDix - Technology of the Future</h2>
+      <p class="text-justify">Most healthcare software systems rely on outdated client server technologies accessible
+        only from network connected desktop computers installed on premises. MeDix fundamentally changes how you manage
+        your Clinic / Hospitals. With MeDix, you get a fully integrated healthcare management suite delivered on a
+        cloud-based platform providing you a robust, secure and available solution for your needs.</p>
+    </div>
+    <div class="col-lg-6 col-12">
+      <img src="{% static 'core/img/hospital.svg' %}" alt="hospital" class="img-fluid">
+    </div>
+  </div>
+</div>
+<div class="wave">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 150 1440 170">
+    <path fill="#8E54E9" fill-opacity="1"
+      d="M0,288L34.3,277.3C68.6,267,137,245,206,218.7C274.3,192,343,160,411,165.3C480,171,549,213,617,218.7C685.7,224,754,192,823,197.3C891.4,203,960,245,1029,272C1097.1,299,1166,309,1234,288C1302.9,267,1371,213,1406,186.7L1440,160L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+    </path>
+  </svg>
+</div>
+<div class="wave">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 150 1440 170">
+    <path fill="#8E54E9" fill-opacity="1"
+      d="M0,288L34.3,277.3C68.6,267,137,245,206,218.7C274.3,192,343,160,411,165.3C480,171,549,213,617,218.7C685.7,224,754,192,823,197.3C891.4,203,960,245,1029,272C1097.1,299,1166,309,1234,288C1302.9,267,1371,213,1406,186.7L1440,160L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z">
+    </path>
+  </svg>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="title">Services</h3>
+    </div>
+    <div class="col-md-4 my-2">
+      <div class="services">
+        <h3><i class="fas fa-user-cog fa-2x"></i> Admin</h3>
+      </div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat id fugit repudiandae eius error optio, ipsum
+        fuga similique provident, iste asperiores, dolores ex. Architecto, labore. Autem adipisci omnis obcaecati illum!
+      </p>
+      <a href="{% url 'admin_signin' %}" class="btn btn-outline-secondary btn-sm">Login</a>
+      <a href="{% url 'admin_signup' %}" class="btn btn-outline-primary btn-sm">Signup</a>
+    </div>
+    <div class="col-md-4 my-2">
+      <div class="services-1">
+        <h3><i class="fas fa-user-md fa-2x"></i> Doctor</h3>
+      </div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat id fugit repudiandae eius error optio, ipsum
+        fuga similique provident, iste asperiores, dolores ex. Architecto, labore. Autem adipisci omnis obcaecati illum!
+      </p>
+      <a href="{% url 'doctor_signup' %}" class="btn btn-outline-secondary btn-sm">Login</a>
+      <a href="{% url 'doctor_signin' %}" class="btn btn-outline-primary btn-sm">Signup</a>
+    </div>
+    <div class="col-md-4 mt-2">
+      <div class="services">
+        <h3><i class="fas fa-hospital-user fa-2x"></i> Patient</h3>
+      </div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat id fugit repudiandae eius error optio, ipsum
+        fuga similique provident, iste asperiores, dolores ex. Architecto, labore. Autem adipisci omnis obcaecati illum!
+      </p>
+      <a href="{% url 'patient_signin' %}" class="btn btn-outline-secondary btn-sm">Login</a>
+      <a href="{% url 'patient_signup' %}" class="btn btn-outline-primary btn-sm">Signup</a>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12 my-4">
+      <h3>Key Features</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-md-6">
+      <h6 class="py-2"><i class="fas fa-user-cog fa-2x"></i> Admin Dashboard</h6>
+      <h6 class="py-2"><i class="fas fa-lungs-virus fa-2x"></i> Covid Management</h6>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <h6 class="py-2"><i class="fas fa-hospital-user fa-2x"></i> Patient Registeration</h6>
+      <h6 class="py-2"><i class="fas fa-envelope fa-2x"></i> Email Reminders</h6>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <h6 class="py-2"><i class="fas fa-calendar-alt fa-2x"></i> Appointment Management</h6>
+      <h6 class="py-2"><i class="fas fa-user-md fa-2x"></i> Doctor Discovery</h6>
+    </div>
+  </div>
+</div>
+<hr class="hr">
+<main class="main-slider">
+  <h1>Our Team</h1>
+  <div class="slider">
+    <div class="buttons">
+      <div class="previous"></div>
+      <div class="next"></div>
+    </div>
+
+    <div class="slide">
+      <div class="testimonial">
+        <blockquote>“ I’ve been interested in coding for a while but never
+          taken the jump, until now.
+          I couldn’t recommend this course enough. I’m now in the job of my
+          dreams and so excited about the future. ”</blockquote>
+        <p class="author">Tanya Sinclair
+          <span>UX Engineer</span>
+        </p>
+      </div>
+
+      <div class="slider-img">
+        <img src="https://alcs-slider.netlify.app/images/image-tanya.jpg" alt="Author Image">
+      </div>
+
+    </div>
+
+    <div class="slide">
+      <div class="testimonial">
+        <blockquote>“ If you want to lay the best foundation possible I’d
+          recommend taking this course.
+          The depth the instructors go into is incredible. I now feel so
+          confident about
+          starting up as a professional developer. ”</blockquote>
+        <p class="author">John Tarkpor
+          <span>Junior Front-end Developer</span>
+        </p>
+      </div>
+
+      <div class="slider-img">
+        <img src="https://alcs-slider.netlify.app/images/image-john.jpg" alt="Author Image">
+      </div>
+
+    </div>
+
+  </div>
+</main>
+<div class="wave">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 160 1440 170">
+    <path fill="#8E54E9" fill-opacity="1"
+      d="M0,288L34.3,277.3C68.6,267,137,245,206,218.7C274.3,192,343,160,411,165.3C480,171,549,213,617,218.7C685.7,224,754,192,823,197.3C891.4,203,960,245,1029,272C1097.1,299,1166,309,1234,288C1302.9,267,1371,213,1406,186.7L1440,160L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z">
+    </path>
+  </svg>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center my-4 ">
+      <h1>About Us</h1>
+      <h3>"If not us, who? If not now, when?"</h3>
+      <h5>-John F. Kennedy</h5>
+      <img src="{% static 'core/img/team.svg' %}" alt="" class="img-fluid team">
+      <p>We are passionate about Technology and we are passionate about Healthcare. With a collective experience of more
+        than 2+ years in Healthcare, Healthcare Technology, Marketing, Customer Service and Information Management, Team
+        MeDix has the experience and is uniquely positioned to understand and meet the challenges that are inherent in
+        the Healthcare sector.</p>
+    </div>
+    <div class="col-md-6">
+      <div class="text-center mb-2">
+        <h3>Our Vision</h3>
+        <i class="fas fa-rocket fa-4x"></i>
+      </div>
+      <p>Our Vision is to be a modern healthcare platform for care givers and general public to manage their medical
+        records and access it anywhere anytime on any devices.</p>
+    </div>
+    <div class="col-md-6">
+      <div class="text-center mb-2">
+        <h3>Our Commitment</h3>
+        <i class="far fa-handshake fa-4x"></i>
+      </div>
+      <p>Service and support is at the heart of what we do. As a true subscription based solutions vendor, we know the
+        importance of keeping our customers happy.</p>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block footer %}
+{% include 'core/footer.html' %}
+{% endblock footer %}
+
+{% block script %}
+<script src="{% static 'core/js/app.js' %}"></script>
+{% endblock script %}

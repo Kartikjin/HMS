@@ -1,0 +1,96 @@
+{% extends 'core/master.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Patient - Book Appointment{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'admins/css/app.css' %}">
+{% endblock styles %}
+
+{% block content %}
+
+<div class="container-fluid ps-4">
+    <div class="row">
+        <div class="col-12">
+            <h1>View Doctors</h1>
+        </div>
+        <div class="col-12">
+            <form action="" method="GET" class="bg-white">
+                <div class="container-fluid p-0">
+                    <div class="row p-2 text-center">
+                        <div class="col-lg-2 col-12 pb-3">
+                            <div class="form-floating">
+                                {% render_field filter.form.doctor_id__user__first_name class="form-control" placeholder="Ram" %}
+                                {{ filter.form.doctor_id__user__first_name.label_tag }}
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-12">
+                            <div class="form-floating pb-3">
+                                {% render_field filter.form.hospital_id__hospital_name class="form-control" placeholder="Ram" %}
+                                {{ filter.form.hospital_id__hospital_name.label_tag }}
+                            </div>
+                        </div>                
+                        <div class="col-lg-3 col-12 pb-3">
+                            <div class="form-floating">
+                                {% render_field filter.form.hospital_id__hospital_address class="form-control" placeholder="Delhi" %}
+                                {{ filter.form.hospital_id__hospital_address.label_tag }}
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-12 pb-3">
+                            <div class="form-floating">
+                                {% render_field filter.form.doctor_id__doctor_speciality class="form-select" %}
+                                {{ filter.form.doctor_id__doctor_speciality.label_tag }}
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-12 pb-3 ps-2 my-auto">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-12">
+            <div class="container-fluid p-0 bg-white">
+                <div class="row p-2">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="table-dark text-center">
+                                <tr>
+                                    <th scope="col">S. No.</th>
+                                    <th scope="col">Doctor Name</th>
+                                    <th scope="col">Hospital Name</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Appointment</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                {% if filter.qs %}
+                                {% for obj in filter.qs %}
+                                
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td>{{obj.doctor_id.user.first_name}} {{obj.doctor_id.user.Last_name}}</td>
+                                    <td>{{obj.hospital_id.hospital_name}}</td>
+                                    <td>{{obj.hospital_id.hospital_address}}</td>
+                                    <td>{{obj.doctor_id.doctor_speciality | capfirst}}</td>
+                                    <td><a href="{% url 'appointment_book' obj.id %}" class="btn btn-sm btn-primary">Book</a></td>      
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <caption>No results</caption>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'admins/js/app.js' %}"></script>
+{% endblock script %}

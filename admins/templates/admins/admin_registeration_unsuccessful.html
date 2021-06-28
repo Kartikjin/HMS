@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+{% block title %}Activation{% endblock %}
+
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'admins/css/admin_style.css' %}">
+{% endblock style %}
+
+
+{% block navbar %}
+{% include 'core/navbar.html'%}
+{% endblock navbar %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 mb-md-0 mb-5">
+            <img src="{% static 'admins/img/unsuccessful.svg' %}" alt="" class="img-fluid">
+        </div>
+        <div class="col-md-6 my-auto">
+            <h3 class=" text-danger"><i class="fas fa-times-circle"></i> Invalid Activation Link!</h3>
+            <p>The system is unable to find a user with the given activation string. The account may already be
+                activated or their activation code has expired. If it has expired, you need to re-register with this
+                site.</p>
+            <a href="{% url 'admin_signin' %}" class="btn btn-success text-white">Sign in</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block footer %}
+{% include 'core/footer.html' %}
+{% endblock footer %}

@@ -1,0 +1,53 @@
+{% extends 'core/master.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block title %}Patient - Appointment Book{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'admins/css/app.css' %}">
+{% endblock styles %}
+
+{% block content %}
+
+<div class="container-fluid ps-4">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-6 card p-3 mt-4">
+            <h2>Appointment Book</h2>
+            <p> Doctor Name: {{appointment.hospital.doctor_id.user.first_name}}</p>
+        </p>Doctor Type: {{appointment.hospital.doctor_id.doctor_speciality}}</p>
+        <p><button id="rzp-button1" class="btn btn-lg btn-primary btn-block" type="button">Pay Now</button></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'admins/js/app.js' %}"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  var options = {
+    "key": "{{razorpay_merchant_id}}", // Enter the Key ID generated from the Dashboard
+    "amount": 500*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "HCS",
+    "description": "Test Transaction",
+    "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "{{callbackurl}}",
+    "prefill": {
+      "name": "{{request.user.name}}",
+      "email": "{{request.user.email}}",
+      "contact": "+91" + "{{request.user.phone}}"
+    },
+    "theme": {
+      "color": "#2BA977"
+    }
+  };
+  var rzp1 = new Razorpay(options);
+  document.getElementById('rzp-button1').onclick = function (e) {
+    rzp1.open();
+    e.preventDefault();
+  }
+</script>
+{% endblock script %}

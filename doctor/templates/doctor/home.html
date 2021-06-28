@@ -1,0 +1,134 @@
+{% extends 'core/master.html' %}
+{% load static %}
+{% block title %}Doctor- Home{% endblock title %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'admins/css/app.css' %}">
+{% endblock styles %}
+
+{% block content %}
+<div class="container-fluid ps-4">
+    <div class="row">
+        <div class="col-12 mt-2">
+            <h2>Doctor Dashboard</h2>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-lg-6">
+            <div class="card shadow">
+                <div class="card-body d-flex">
+                    <div class="text-start text-danger me-auto">
+                        <i class="fas fa-user-injured float-left fa-4x"></i>
+                    </div>
+                    <div class="text-end">
+                        <h3>{{ t_patient }}</h3>
+                        <h6>Total Appointments</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card shadow">
+                <div class="card-body d-flex">
+                    <div class="text-start text-success me-auto">
+                        <i class="fas fa-rupee-sign float-left fa-4x"></i>
+                    </div>
+                    <div class="text-end">
+                        <h3>{{ t_revenue }}</h3>
+                        <h6>Total Revenue</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-lg-6">
+            <h4>Latest Appointments</h4>
+            <div class="table-height mt-3">
+                <table class="table shadow-sm">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">S. No.</th>
+                            <th scope="col">Patient Name</th>
+                            <th scope="col">Doctor Name</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if appointments %}
+                        {% for obj in appointments %}
+
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{obj.patient.user.first_name}}
+                                {{obj.patient.user.last_name}}</td>
+                            <td>{{obj.hospital.doctor_id.user.first_name}} {{obj.hospital.doctor_id.user.last_name}}
+                            </td>
+                            <td>{{obj.date}}</td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <caption class="shadow-sm ps-2" style="min-height: 209px;">No results</caption>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <h4>Latest Applications</h4>
+            <div class="table-height mt-3">
+                <table class="table shadow-sm">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">S. No.</th>
+                            <th scope="col">Hospital Name</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if applications %}
+                        {% for obj in applications %}
+
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{obj.hospital_id.hospital_name}}</td>
+                            <td>{{obj.doctor_id.doctor_speciality | capfirst}}
+                            </td>
+                            <td>
+                                {% if obj.status == 'applied' %}
+                                <span class="btn-sm btn-info">{{obj.status | capfirst}}</span>
+                                {% elif obj.status == 'approved' %}
+                                <span class="btn-sm btn-success">{{obj.status | capfirst}}</span>
+                                {% elif obj.status == 'rejected' %}
+                                <span class="btn-sm btn-danger">{{obj.status | capfirst}}</span>
+                                {% elif obj.status == 'laidoff' %}
+                                <span class="btn-sm btn-warning">{{obj.status | capfirst}}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <caption class="shadow-sm ps-2" style="min-height: 209px;">No results</caption>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <footer>
+                <div class="footer clearfix text-muted">
+                    <div class="float-start">
+                        <p>2020 &copy; MeDix</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'admins/js/app.js' %}"></script>
+{% endblock script %}
